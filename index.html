@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi Tool Hub - All-in-One Tool Collection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1E1E2F;
+            color: #EAEAEA;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #2B2D42;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #FFD700;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            font-size: 2.2rem;
+        }
+
+        .tagline {
+            color: #B0B0C0;
+            font-size: 1rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Section Styles */
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #FFD700;
+            color: #FFD700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title i {
+            font-size: 1.5rem;
+        }
+
+        /* Tool Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Tool Card */
+        .tool-card {
+            background-color: #3A3D5B;
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(255, 215, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .tool-card:hover {
+            background-color: #FFD700;
+            color: #1E1E2F;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(255, 215, 0, 0.3);
+        }
+
+        .tool-card:hover .tool-title {
+            color: #1E1E2F;
+        }
+
+        .tool-card:hover .tool-desc {
+            color: #2B2D42;
+        }
+
+        .tool-number {
+            display: inline-block;
+            background-color: #2B2D42;
+            color: #FFD700;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            margin-bottom: 0.75rem;
+        }
+
+        .tool-card:hover .tool-number {
+            background-color: #1E1E2F;
+            color: #FFD700;
+        }
+
+        .tool-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            color: #FFD700;
+        }
+
+        .tool-desc {
+            color: #C0C0D0;
+            margin-bottom: 1.25rem;
+            flex-grow: 1;
+        }
+
+        /* Button Styles */
+        .tool-button {
+            background-color: #FFD700;
+            color: #1E1E2F;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+            margin-top: auto;
+        }
+
+        .tool-button:hover {
+            background-color: #E6C200;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2B2D42;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .copyright {
+            color: #B0B0C0;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: #FFD700;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #E6C200;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                padding: 0 1rem;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .logo i {
+                font-size: 1.8rem;
+            }
+            
+            .container {
+                padding: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .tool-card {
+                padding: 1.25rem;
+            }
+        }
+
+        /* Tablet Responsiveness */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Search Bar */
+        .search-container {
+            margin: 1.5rem 0 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-box {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border-radius: 8px;
+            border: 2px solid #3A3D5B;
+            background-color: #2B2D42;
+            color: #EAEAEA;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #FFD700;
+            box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #FFD700;
+            font-size: 1.2rem;
+        }
+
+        /* Tool Categories */
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .category-btn {
+            background-color: #3A3D5B;
+            color: #EAEAEA;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background-color: #FFD700;
+            color: #1E1E2F;
+        }
+
+        /* No results message */
+        .no-results {
+            text-align: center;
+            padding: 2rem;
+            color: #B0B0C0;
+            font-size: 1.2rem;
+            display: none;
+        }
+
+        /* Tool Count */
+        .tool-count {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #FFD700;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-tools"></i>
+                <h1>Multi Tool Hub</h1>
+            </div>
+            <p class="tagline">150+ free tools for all your digital needs</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Search Section -->
+        <div class="search-container">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search for tools by name or category...">
+            </div>
+        </div>
+
+        <!-- Category Filter -->
+        <div class="categories">
+            <button class="category-btn active" data-category="all">
+                <i class="fas fa-th"></i> All Tools
+            </button>
+            <button class="category-btn" data-category="image">
+                <i class="fas fa-image"></i> Image Tools
+            </button>
+            <button class="category-btn" data-category="pdf">
+                <i class="fas fa-file-pdf"></i> PDF Tools
+            </button>
+            <button class="category-btn" data-category="text">
+                <i class="fas fa-font"></i> Text Tools
+            </button>
+            <button class="category-btn" data-category="code">
+                <i class="fas fa-code"></i> Developer Tools
+            </button>
+            <button class="category-btn" data-category="calc">
+                <i class="fas fa-calculator"></i> Calculators
+            </button>
+            <button class="category-btn" data-category="seo">
+                <i class="fas fa-search-plus"></i> SEO Tools
+            </button>
+            <button class="category-btn" data-category="utility">
+                <i class="fas fa-cube"></i> Utilities
+            </button>
+        </div>
+
+        <!-- Tool Count -->
+        <div class="tool-count" id="toolCount">Showing 150 tools</div>
+
+        <!-- No Results Message -->
+        <div class="no-results" id="noResults">
+            <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+            <h3>No tools found</h3>
+            <p>Try a different search term or category</p>
+        </div>
+
+        <!-- Tools Grid -->
+        <div id="toolsContainer">
+            <!-- Tools will be dynamically inserted here by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p class="copyright">© 2023 Multi Tool Hub. All tools are free to use.</p>
+            <p>150+ tools for your daily digital tasks</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tool data - first 25 tools from each category
+        const tools = [
+            // Image Tools (1-25)
+            { id: 1, name: "Image Resizer", category: "image", desc: "Resize your images to any dimension while maintaining quality." },
+            { id: 2, name: "Image Compressor", category: "image", desc: "Compress image file size without noticeable quality loss." },
+            { id: 3, name: "Image Cropper", category: "image", desc: "Crop images to remove unwanted parts or focus on specific areas." },
+            { id: 4, name: "Image Rotator", category: "image", desc: "Rotate images clockwise or counterclockwise in 90° increments." },
+            { id: 5, name: "Image Flipper", category: "image", desc: "Flip images horizontally or vertically with one click." },
+            { id: 6, name: "JPG to PNG", category: "image", desc: "Convert JPG/JPEG images to PNG format with transparency support." },
+            { id: 7, name: "PNG to JPG", category: "image", desc: "Convert PNG images to JPG format with customizable background." },
+            { id: 8, name: "WEBP to JPG", category: "image", desc: "Convert modern WEBP images to universal JPG format." },
+            { id: 9, name: "JPG to WEBP", category: "image", desc: "Convert JPG images to efficient WEBP format for smaller file sizes." },
+            { id: 10, name: "Image to PDF", category: "image", desc: "Convert one or multiple images to a single PDF document." },
+            { id: 11, name: "PDF to Image", category: "image", desc: "Extract images from PDF files or convert PDF pages to images." },
+            { id: 12, name: "Image Background Remover", category: "image", desc: "Remove backgrounds from images automatically with AI." },
+            { id: 13, name: "Image Watermark Adder", category: "image", desc: "Add custom text or image watermarks to protect your images." },
+            { id: 14, name: "Image Watermark Remover", category: "image", desc: "Remove watermarks from images using advanced algorithms." },
+            { id: 15, name: "Image Color Picker", category: "image", desc: "Extract color values from any point in your image." },
+            { id: 16, name: "Image Blur Tool", category: "image", desc: "Apply blur effects to images for privacy or artistic purposes." },
+            { id: 17, name: "Image Sharpen Tool", category: "image", desc: "Enhance image details by sharpening blurry areas." },
+            { id: 18, name: "Image Brightness Adjuster", category: "image", desc: "Adjust image brightness to fix underexposed or overexposed photos." },
+            { id: 19, name: "Image Contrast Adjuster", category: "image", desc: "Modify image contrast for better visual impact." },
+            { id: 20, name: "Image DPI Checker", category: "image", desc: "Check DPI/PPI resolution of your images for printing purposes." },
+            { id: 21, name: "Image Metadata Viewer", category: "image", desc: "View EXIF, IPTC, and other metadata embedded in images." },
+            { id: 22, name: "Image Metadata Remover", category: "image", desc: "Strip metadata from images for privacy protection." },
+            { id: 23, name: "Image Size Reducer (KB)", category: "image", desc: "Reduce image file size to specific kilobyte targets." },
+            { id: 24, name: "Image Aspect Ratio Fixer", category: "image", desc: "Fix image aspect ratios for social media or specific requirements." },
+            { id: 25, name: "Image Grayscale Converter", category: "image", desc: "Convert color images to grayscale/black and white." },
+
+            // PDF Tools (26-50) - sample
+            { id: 26, name: "PDF Compressor", category: "pdf", desc: "Reduce PDF file size while maintaining quality." },
+            { id: 27, name: "PDF Merger", category: "pdf", desc: "Combine multiple PDF files into a single document." },
+            { id: 28, name: "PDF Splitter", category: "pdf", desc: "Split PDF documents into separate pages or sections." },
+            { id: 29, name: "PDF to Word", category: "pdf", desc: "Convert PDF files to editable Word documents." },
+            { id: 30, name: "Word to PDF", category: "pdf", desc: "Convert Word documents to PDF format." },
+            { id: 31, name: "PDF to Excel", category: "pdf", desc: "Extract tables from PDF files to Excel spreadsheets." },
+            { id: 32, name: "Excel to PDF", category: "pdf", desc: "Convert Excel spreadsheets to PDF documents." },
+            { id: 33, name: "PDF to PPT", category: "pdf", desc: "Convert PDF files to PowerPoint presentations." },
+            { id: 34, name: "PPT to PDF", category: "pdf", desc: "Convert PowerPoint presentations to PDF format." },
+            { id: 35, name: "PDF Password Remover", category: "pdf", desc: "Remove password protection from PDF files." },
+
+            // Text Tools (51-70) - sample
+            { id: 51, name: "Text Case Converter", category: "text", desc: "Convert text between uppercase, lowercase, title case, and more." },
+            { id: 52, name: "Word Counter", category: "text", desc: "Count words, characters, sentences, and paragraphs in text." },
+            { id: 53, name: "Character Counter", category: "text", desc: "Count characters with and without spaces in your text." },
+            { id: 54, name: "Sentence Counter", category: "text", desc: "Count sentences in paragraphs or documents." },
+            { id: 55, name: "Paragraph Counter", category: "text", desc: "Count paragraphs in text documents or articles." },
+            { id: 56, name: "Text Duplicate Remover", category: "text", desc: "Remove duplicate lines or entries from text." },
+            { id: 57, name: "Text Sorter", category: "text", desc: "Sort text lines alphabetically or in custom order." },
+            { id: 58, name: "Text Reverser", category: "text", desc: "Reverse text character order or line order." },
+            { id: 59, name: "Remove Extra Spaces", category: "text", desc: "Clean text by removing extra spaces and line breaks." },
+            { id: 60, name: "Find and Replace Text", category: "text", desc: "Find and replace text patterns in documents." },
+
+            // Developer Tools (71-95) - sample
+            { id: 71, name: "JSON Formatter", category: "code", desc: "Format and beautify JSON data with proper indentation." },
+            { id: 72, name: "JSON Validator", category: "code", desc: "Validate JSON syntax and check for errors." },
+            { id: 73, name: "JSON to CSV", category: "code", desc: "Convert JSON data to CSV format for spreadsheet use." },
+            { id: 74, name: "CSV to JSON", category: "code", desc: "Convert CSV data to JSON format for programming use." },
+            { id: 75, name: "HTML Formatter", category: "code", desc: "Format and indent HTML code for better readability." },
+            { id: 76, name: "HTML Minifier", category: "code", desc: "Minify HTML code by removing unnecessary spaces and comments." },
+            { id: 77, name: "CSS Minifier", category: "code", desc: "Minify CSS code to reduce file size for production." },
+            { id: 78, name: "JavaScript Minifier", category: "code", desc: "Minify JavaScript code for faster loading web pages." },
+            { id: 79, name: "Base64 Encoder", category: "code", desc: "Encode text or files to Base64 format." },
+            { id: 80, name: "Base64 Decoder", category: "code", desc: "Decode Base64 strings back to original format." },
+
+            // Calculator & Converter Tools (96-115) - sample
+            { id: 96, name: "Simple Calculator", category: "calc", desc: "Basic calculator for everyday arithmetic operations." },
+            { id: 97, name: "Scientific Calculator", category: "calc", desc: "Advanced calculator with scientific functions." },
+            { id: 98, name: "Percentage Calculator", category: "calc", desc: "Calculate percentages, increases, and decreases." },
+            { id: 99, name: "EMI Calculator", category: "calc", desc: "Calculate Equated Monthly Installments for loans." },
+            { id: 100, name: "GST Calculator", category: "calc", desc: "Calculate Goods and Services Tax amounts." },
+            { id: 101, name: "Currency Converter", category: "calc", desc: "Convert between world currencies with live rates." },
+            { id: 102, name: "Length Converter", category: "calc", desc: "Convert between different length units (meters, feet, etc.)." },
+            { id: 103, name: "Weight Converter", category: "calc", desc: "Convert between different weight units (kg, lbs, etc.)." },
+            { id: 104, name: "Temperature Converter", category: "calc", desc: "Convert between Celsius, Fahrenheit, and Kelvin." },
+            { id: 105, name: "Speed Converter", category: "calc", desc: "Convert between different speed units (kph, mph, etc.)." },
+
+            // SEO & Web Tools (116-135) - sample
+            { id: 116, name: "Meta Tag Generator", category: "seo", desc: "Generate meta tags for better SEO performance." },
+            { id: 117, name: "Meta Description Checker", category: "seo", desc: "Check and analyze meta descriptions for SEO." },
+            { id: 118, name: "Keyword Density Checker", category: "seo", desc: "Analyze keyword density in web content." },
+            { id: 119, name: "SEO Analyzer", category: "seo", desc: "Comprehensive SEO analysis for web pages." },
+            { id: 120, name: "Page Speed Checker", category: "seo", desc: "Check website loading speed and performance." },
+            { id: 121, name: "Website Uptime Checker", category: "seo", desc: "Monitor website availability and uptime." },
+            { id: 122, name: "Website IP Finder", category: "seo", desc: "Find IP address and server information for websites." },
+            { id: 123, name: "Domain WHOIS Checker", category: "seo", desc: "Check WHOIS information for domain names." },
+            { id: 124, name: "DNS Lookup Tool", category: "seo", desc: "Perform DNS lookups to check domain records." },
+            { id: 125, name: "HTTP Header Checker", category: "seo", desc: "Check HTTP headers sent by web servers." },
+
+            // Utility & Misc Tools (136-150) - sample
+            { id: 136, name: "QR Code Generator", category: "utility", desc: "Generate QR codes for URLs, text, contact info, and more." },
+            { id: 137, name: "Barcode Generator", category: "utility", desc: "Create barcodes in various formats for products." },
+            { id: 138, name: "Password Generator", category: "utility", desc: "Generate secure random passwords with customizable criteria." },
+            { id: 139, name: "Password Strength Checker", category: "utility", desc: "Check password strength and security level." },
+            { id: 140, name: "Random Number Generator", category: "utility", desc: "Generate random numbers within specified ranges." },
+            { id: 141, name: "Random Name Generator", category: "utility", desc: "Generate random names for projects, characters, or usernames." },
+            { id: 142, name: "Color Palette Generator", category: "utility", desc: "Create harmonious color palettes for design projects." },
+            { id: 143, name: "HEX to RGB Converter", category: "utility", desc: "Convert HEX color codes to RGB values." },
+            { id: 144, name: "RGB to HEX Converter", category: "utility", desc: "Convert RGB color values to HEX codes." },
+            { id: 145, name: "Time Zone Converter", category: "utility", desc: "Convert times between different time zones worldwide." },
+            { id: 146, name: "Stopwatch Tool", category: "utility", desc: "Precise stopwatch with lap timer functionality." },
+            { id: 147, name: "Countdown Timer", category: "utility", desc: "Set countdown timers for events or deadlines." },
+            { id: 148, name: "Online Notepad", category: "utility", desc: "Simple online notepad for quick notes and text editing." },
+            { id: 149, name: "File Renamer Tool", category: "utility", desc: "Batch rename files with patterns and rules." },
+            { id: 150, name: "File Size Converter", category: "utility", desc: "Convert file sizes between different units (KB, MB, GB, etc.)." }
+        ];
+
+        // DOM elements
+        const toolsContainer = document.getElementById('toolsContainer');
+        const searchInput = document.getElementById('searchInput');
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const noResultsMessage = document.getElementById('noResults');
+        const toolCountElement = document.getElementById('toolCount');
+
+        // Initialize the page with all tools
+        function initTools() {
+            renderTools(tools);
+            updateToolCount(tools.length);
+        }
+
+        // Render tools to the page
+        function renderTools(toolsToRender) {
+            toolsContainer.innerHTML = '';
+            
+            if (toolsToRender.length === 0) {
+                noResultsMessage.style.display = 'block';
+                return;
+            }
+            
+            noResultsMessage.style.display = 'none';
+            
+            toolsToRender.forEach(tool => {
+                const toolCard = document.createElement('div');
+                toolCard.className = 'tool-card';
+                toolCard.setAttribute('data-category', tool.category);
+                
+                // Get appropriate icon for each category
+                let iconClass;
+                switch(tool.category) {
+                    case 'image': iconClass = 'fas fa-image'; break;
+                    case 'pdf': iconClass = 'fas fa-file-pdf'; break;
+                    case 'text': iconClass = 'fas fa-font'; break;
+                    case 'code': iconClass = 'fas fa-code'; break;
+                    case 'calc': iconClass = 'fas fa-calculator'; break;
+                    case 'seo': iconClass = 'fas fa-search-plus'; break;
+                    case 'utility': iconClass = 'fas fa-cube'; break;
+                    default: iconClass = 'fas fa-toolbox';
+                }
+                
+                toolCard.innerHTML = `
+                    <span class="tool-number">${tool.id}</span>
+                    <h2 class="tool-title"><i class="${iconClass}"></i> ${tool.name}</h2>
+                    <p class="tool-desc">${tool.desc}</p>
+                    <button class="tool-button" onclick="handleToolClick('${tool.name}')">Use Tool</button>
+                `;
+                
+                toolsContainer.appendChild(toolCard);
+            });
+            
+            updateToolCount(toolsToRender.length);
+        }
+
+        // Handle tool button clicks
+        function handleToolClick(toolName) {
+            alert(`Redirecting to ${toolName}`);
+            // In a real application, this would navigate to the actual tool page
+        }
+
+        // Filter tools by category
+        function filterToolsByCategory(category) {
+            if (category === 'all') {
+                renderTools(tools);
+                return;
+            }
+            
+            const filteredTools = tools.filter(tool => tool.category === category);
+            renderTools(filteredTools);
+        }
+
+        // Search tools by name or description
+        function searchTools(query) {
+            const lowercaseQuery = query.toLowerCase();
+            const filteredTools = tools.filter(tool => 
+                tool.name.toLowerCase().includes(lowercaseQuery) || 
+                tool.desc.toLowerCase().includes(lowercaseQuery)
+            );
+            
+            renderTools(filteredTools);
+        }
+
+        // Update tool count display
+        function updateToolCount(count) {
+            toolCountElement.textContent = `Showing ${count} tools`;
+        }
+
+        // Set active category button
+        function setActiveCategoryButton(selectedCategory) {
+            categoryButtons.forEach(button => {
+                if (button.getAttribute('data-category') === selectedCategory) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+        }
+
+        // Event listeners
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const category = button.getAttribute('data-category');
+                setActiveCategoryButton(category);
+                filterToolsByCategory(category);
+            });
+        });
+
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.trim();
+            
+            // If search is empty, show the current category
+            if (query === '') {
+                const activeCategory = document.querySelector('.category-btn.active').getAttribute('data-category');
+                filterToolsByCategory(activeCategory);
+                return;
+            }
+            
+            searchTools(query);
+        });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', initTools);
+    </script>
+</body>
+</html>
